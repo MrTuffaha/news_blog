@@ -26,4 +26,16 @@ class Post extends Database{
             return NULL;
         }
     }//end of fetchAll()
+    
+    public function searchAll($search) {
+        $query = "SELECT `post_id`, `post_category_id`, `post_title`,"
+                . " `post_author`, `post_date`, `post_image`, `post_content`,"
+                . " `post_tags`, `post_comment_count`, `post_views_count`,"
+                . " `post_status` FROM `posts` WHERE `post_tags` LIKE '%$search%'";
+        if($this->performQuery($query)){
+            return parent::fetchAll();
+        }else{
+            return NULL;
+        }
+    }//end of searchAll()
 }//end of class
