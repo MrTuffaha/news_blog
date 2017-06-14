@@ -5,8 +5,8 @@ include_once 'config.php';
 /**
  * @ClassName : MySql Database Class
  * @Description : This Class is Used to perform actions in Mysql DB
- * @Version : 2.6v
- * @LastEdit : 18/Mar/2017
+ * @Version : 2.7v
+ * @LastEdit : 14/Jun/2017
  * @Author : Omar Tuffaha <omar_tuffaha@hotmail.com>
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
  */
@@ -25,7 +25,7 @@ class Database {
 
 //end of construct
     //this function establishes a connection to database
-    public function openConnection() {
+    protected function openConnection() {
 
         //connect to database
         $this->conn = mysqli_connect(DBSERVER, DBUSER, DBPASS, DBNAME);
@@ -44,7 +44,7 @@ class Database {
 //end of openConnection()
     //this function performs the query that was requested by other classes
     //it takes a String of the query as a paremeter
-    public function performQuery($query) {
+    protected function performQuery($query) {
 
         //perform query
         $this->lastQuery = mysqli_query($this->conn, $query);
@@ -57,7 +57,7 @@ class Database {
 //end of function performQuery($query)
     //this function performs multi insert querys that was requested by other classes
     //it takes a String of the insert querys as a paremeter
-    public function insertMultiQuery($querys) {
+    protected function insertMultiQuery($querys) {
 
         //perform query
         $this->lastQuery = mysqli_multi_query($this->conn, $querys);
@@ -69,7 +69,7 @@ class Database {
 
 //end of performMultiQuery()
     //this function returns all of a list that was requested from a database
-    public function fetchAll() {
+    protected function fetchAll() {
 
         $this->recordSet = NULL;
         //this loop goes over all the items that are requested
@@ -83,28 +83,19 @@ class Database {
 
     //end of function fetchAll
     //this function returns the last id used
-    public function lastInsertedId() {
+    protected function lastInsertedId() {
         return mysqli_insert_id($this->conn);
     }
 
 //end of lastInserted Id
 
-    public static function mysql_escape_mimic($inp) {
-        if (is_array($inp)) {
-            return array_map(__METHOD__, $inp);
-        }
-        if (!empty($inp) && is_string($inp)) {
-            return str_replace(array('\\', "\0", "\n", "\r", "'", '"', "\x1a"), array('\\\\', '\\0', '\\n', '\\r', "\\'", '\\"', '\\Z'), $inp);
-        }
-        return $inp;
-    }
 
-    public function run_mysql_real_escape_string($string) {
+    protected function run_mysql_real_escape_string($string) {
         $string = Database::encodeIllegalCharAndFilter($string);
         return mysqli_escape_string($this->conn, $string);
     }
 
-     public static function encodeIllegalCharAndFilter($string) {
+     protected function encodeIllegalCharAndFilter($string) {
 
         $string = str_replace("'", "%21", $string);
         //$string = str_replace("-", "%22", $string);
@@ -116,7 +107,7 @@ class Database {
         return $string;
     }
 
-    public static function decodeIllegalChar($string) {
+    protected function decodeIllegalChar($string) {
 
         $string = str_replace("%21", "'", $string);
         //$string = str_replace("%22", "-", $string);
@@ -128,7 +119,7 @@ class Database {
         return $string;
     }
 
-    public function getMysqliError() {
+    protected function getMysqliError() {
         return mysqli_error($this->conn);
     }
 
