@@ -1,39 +1,39 @@
-<?php include_once 'includes/header.php';?>
-    <div id="wrapper">
+<?php include_once 'includes/header.php'; ?>
+<div id="wrapper">
 
-        <!-- Navigation -->
-            <?php include_once 'includes/navigation.php';?>
-      
+    <!-- Navigation -->
+    <?php include_once 'includes/navigation.php'; ?>
 
-        <div id="page-wrapper">
 
-            <div class="container-fluid">
+    <div id="page-wrapper">
 
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Blank Page
-                            <small>Subheading</small>
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-file"></i> Blank Page
-                            </li>
-                        </ol>
-                    </div>
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        Welcome To Admin
+                        <small>Omar</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li>
+                            <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                        </li>
+                        <li class="active">
+                            <i class="fa fa-file"></i> Blank Page
+                        </li>
+                    </ol>
                 </div>
-                <!-- /.row -->
-
             </div>
-            <!-- /.container-fluid -->
+            <!-- /.row -->
 
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /.container-fluid -->
 
     </div>
-    <!-- /#wrapper -->
-<?php include_once 'includes/footer.php';?>
+    <!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+<?php include_once 'includes/footer.php'; ?>
