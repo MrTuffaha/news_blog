@@ -1,8 +1,5 @@
 <?php
 include_once 'includes/header.php';
-
-include_once 'includes/Post.php';
-include_once 'includes/Category.php';
 ?>
 
 <!-- Navigation -->
