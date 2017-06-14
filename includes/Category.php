@@ -6,6 +6,7 @@
  * @Class: Category
  *
  */
+include_once 'Database.php';
 
 class Category extends Database{
     

@@ -1,4 +1,5 @@
 <?php include_once 'includes/header.php'; ?>
+<?php include_once '../includes/Category.php'; ?>
 <div id="wrapper">
 
     <!-- Navigation -->
@@ -37,14 +38,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2</td>
-                                    </tr>
+                                    <?php
+                                    $categories = new Category();
+                                    $categoriesList = $categories->fetchAll();
+                                    if (!empty($categoriesList)) {
+                                        foreach ($categoriesList as $row) {
+                                            echo "<tr>";
+                                            echo "<td>{$row['category_id']}</td>";
+                                            echo "<td>{$row['category_title']}</td>";
+                                            echo "</tr>";
+                                        }
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
 
