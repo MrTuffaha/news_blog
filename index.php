@@ -1,4 +1,10 @@
-<?php include_once 'includes/header.php'; ?>
+<?php
+include_once 'includes/header.php';
+
+include_once 'includes/Post.php';
+include_once 'includes/Category.php';
+?>
+
 <!-- Navigation -->
 <?php include_once 'includes/navigation.php'; ?>
 
@@ -15,9 +21,8 @@
                 <small>Secondary Text</small>
             </h1>
             <?php
-            include_once 'includes/Post.php';
             $posts = new Post();
-            if (isset($_REQUEST['search'])&&!empty($_REQUEST['search'])) {
+            if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
                 $postList = $posts->searchAll($_REQUEST['search']);
             } else {
                 $postList = $posts->fetchAll();
@@ -49,13 +54,12 @@
                     <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                     <hr>
-                <?php 
-                
+                    <?php
                 }//end of foreach
-                
-                }else{
-                    echo "<h2>No posts found</h2>";
-                }//end of if (isset($_REQUEST['search'])) ?>
+            } else {
+                echo "<h2>No posts found</h2>";
+            }//end of if (isset($_REQUEST['search'])) 
+            ?>
 
             <!--
 
@@ -73,11 +77,11 @@
         </div>
 
         <!-- Blog Sidebar Widgets Column -->
-<?php include_once 'includes/sidebar.php'; ?>
+        <?php include_once 'includes/sidebar.php'; ?>
 
     </div>
     <!-- /.row -->
 
     <hr>
 
-<?php include_once 'includes/footer.php'; ?>
+    <?php include_once 'includes/footer.php'; ?>
