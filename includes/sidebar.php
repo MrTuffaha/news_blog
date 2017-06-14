@@ -31,11 +31,12 @@
                             foreach ($categoriesList as $row) {
                                 ?>
                                 <div class="col-lg-6">
-                                    <li><a href="#"><?php echo $row['category_title']?></a>
+                                    <li><a href="#"><?php echo $row['category_title'] ?></a>
                                     </li>
                                 </div>
                             <?php }//end of foreach
-                        } ?>
+                        }
+                        ?>
                     </div>
                 </ul>
             </div>
@@ -58,9 +59,6 @@
     </div>
 
     <!-- Side Widget Well -->
-    <div class="well">
-        <h4>Side Widget Well</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
-    </div>
+<?php include_once 'widget.php'; ?>
 
 </div>
