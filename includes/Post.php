@@ -11,7 +11,10 @@ require_once 'Database.php';
 
 class Post extends Database{
     
-    
+    /**
+     * @@description: gets all the posts from the database
+     * @return lists of post
+     */
     public function fetchAll() {
         $query = "SELECT `post_id`, `post_category_id`, `post_title`,"
                 . " `post_author`, `post_date`, `post_image`, `post_content`,"
@@ -22,5 +25,5 @@ class Post extends Database{
         }else{
             return NULL;
         }
-    }
-}
+    }//end of fetchAll()
+}//end of class
