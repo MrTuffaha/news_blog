@@ -2,7 +2,7 @@
 
 /**
  * @author: Omar Tuffaha <omar_tuffaha@hotmail.com>
- * @description: This is a class that will all movements on Posts 
+ * @description: This is a class that will all movements on Posts
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
  * @Class: Category
  *
@@ -19,7 +19,7 @@ class Category extends Database {
             return NULL;
         }
     }
-    
+
     public function fetchByID($id) {
         $id = $this->run_mysql_real_escape_string($id);
         $query = "SELECT `category_id`, `category_title` FROM `category` WHERE `category_id` = '{$id}'";
@@ -45,10 +45,10 @@ class Category extends Database {
             die($this->getMysqliError());
         }
     }
-    
-    public function updateCategory($id,$newCategory){
-        $id = $this->run_mysql_real_escape_string($id);   
-        $newCategory = $this->run_mysql_real_escape_string($newCategory);  
+
+    public function updateCategory($id, $newCategory) {
+        $id = $this->run_mysql_real_escape_string($id);
+        $newCategory = $this->run_mysql_real_escape_string($newCategory);
         $query = "UPDATE `category` SET `category_title`='{$newCategory}' WHERE `category_id` = '{$id}';";
         if (!$this->performQuery($query)) {
             die($this->getMysqliError());

@@ -1,7 +1,6 @@
 <?php
 include_once 'includes/header.php';
 include_once '../includes/Category.php';
-
 if (isset($_REQUEST['addCategory'])) {
     if (!empty($_REQUEST['category'])) {
         $newCategories = new Category();
