@@ -21,7 +21,11 @@ include_once '../includes/Post.php';
                     <?php
                     if (isset($_GET['source'])) {
                         if ($_GET['source'] == "add_post") {
-                            include_once './add_post.php';
+                            include_once 'add_post.php';
+                        } else if ($_GET['source'] == "edit_post") {
+                            include_once 'edit_post.php';
+                        } else {
+                            include_once 'view_all_posts.php';
                         }
                     } else {
                         include_once 'view_all_posts.php';

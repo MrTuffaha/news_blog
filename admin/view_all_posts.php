@@ -1,3 +1,18 @@
+<?php
+if (isset($_REQUEST['source']) && $_REQUEST['source'] == "delete_post") {
+    if (!empty(($_REQUEST['post_id']))) {
+        $post = new Post();
+        $post->deletePost($_REQUEST['post_id']);
+        header("location: posts.php");
+    } else {
+        header("location: posts.php");
+    }
+}
+?>
+
+
+
+
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -10,6 +25,7 @@
             <th>Tag</th>
             <th>Comment</th>
             <th>Date</th>
+            <th colspan="2">Options</th>
         </tr>
     </thead>
     <tbody>
@@ -32,6 +48,8 @@
                 echo "<td>{$row['post_tags']}</td>";
                 echo "<td>{$row['post_comment_count']}</td>";
                 echo "<td>{$row['post_date']}</td>";
+                echo "<td><a href='posts.php?source=edit_post&post_id={$row['post_id']}'>edit</a></td>";
+                echo "<td><a href='posts.php?source=delete_post&post_id={$row['post_id']}'>Delete</a></td>";
                 echo "</tr>";
             }
         }

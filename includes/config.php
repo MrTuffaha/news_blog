@@ -8,6 +8,6 @@ define("DBSERVER","localhost");
 define("DBUSER","phpmyadmin");
 define("DBPASS","password");
 define("DBNAME","cms");
-define("DIR", __DIR__."/../");
+define("DIR","http://localhost/udemy_blog/");
 ?>
 

@@ -37,6 +37,8 @@ class Post extends Database {
 
     function setTags($tags) {
         $this->tags = $this->run_mysql_real_escape_string($tags);
+        $this->tags = strtolower($this->tags);
+        $this->tags = trim($this->tags);
     }
 
     function setContent($content) {
@@ -62,6 +64,19 @@ class Post extends Database {
                 . " `post_status` FROM `posts`";
         if ($this->performQuery($query)) {
             return parent::fetchAll();
+        } else {
+            return NULL;
+        }
+    }
+
+    public function fetchById($id) {
+        $id = $this->run_mysql_real_escape_string($id);
+        $query = "SELECT `post_id`, `post_category_id`, `post_title`,"
+                . " `post_author`, `post_date`, `post_image`, `post_content`,"
+                . " `post_tags`, `post_comment_count`, `post_views_count`,"
+                . " `post_status` FROM `posts` WHERE `post_id` = '$id'";
+        if ($this->performQuery($query)) {
+            return parent::fetchAll()[0];
         } else {
             return NULL;
         }
@@ -93,6 +108,32 @@ class Post extends Database {
             if (!empty($this->image_name)) {
                 move_uploaded_file($this->image_content, DIR . $this->image_name);
             }
+        }
+    }
+
+    public function updatePost($id) {
+
+        $id = $this->run_mysql_real_escape_string($id);
+        $date = date('Y-m-d');
+        $query = "UPDATE `posts` SET `post_category_id`='$this->category',`post_title`='$this->title',`post_author`='$this->author',`post_content`='$this->content',`post_tags`='$this->tags',`post_status`='$this->status' ";
+        if (!empty($this->image_name)) {
+            $query .= ",`post_image`='$this->image_name' ";
+        }
+        $query .= "  WHERE `post_id` = '$id';";
+        if (!$this->performQuery($query)) {
+            die($this->getMysqliError());
+        } else {
+            if (!empty($this->image_name)) {
+                move_uploaded_file($this->image_content, DIR . $this->image_name);
+            }
+        }
+    }
+
+    public function deletePost($id) {
+        $id = $this->run_mysql_real_escape_string($id);
+        $query = "DELETE FROM `posts` WHERE `post_id` = '$id'";
+        if (!$this->performQuery($query)) {
+            die($this->getMysqliError());
         }
     }
 
