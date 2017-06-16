@@ -9,5 +9,6 @@ define("DBUSER","phpmyadmin");
 define("DBPASS","password");
 define("DBNAME","cms");
 define("DIR","http://localhost/udemy_blog/");
+define("FILE_DIR",__DIR__."/../");
 ?>
 

@@ -31,7 +31,7 @@
                             foreach ($categoriesList as $row) {
                                 ?>
                                 <div class="col-lg-6">
-                                    <li><a href="#"><?php echo $row['category_title'] ?></a>
+                                    <li><a href="#"><?php echo $categories->decodeIllegalChar($row['category_title']) ?></a>
                                     </li>
                                 </div>
                             <?php }//end of foreach

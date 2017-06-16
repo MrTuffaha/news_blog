@@ -1,4 +1,5 @@
 <?php 
+//include_once 'default.php';
 include_once 'includes/Post.php';
 include_once 'includes/Category.php';
 ?>

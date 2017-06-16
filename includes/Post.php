@@ -46,6 +46,9 @@ class Post extends Database {
     }
 
     function setImage_name($image_name) {
+        $image_name = strtolower($image_name);
+        $tmp = explode('.', $image_name);
+        $image_name = uniqid("img_").".".$tmp[1];
         $this->image_name = "images/" . $image_name;
     }
 
@@ -58,10 +61,7 @@ class Post extends Database {
      * @return lists of post
      */
     public function fetchAll() {
-        $query = "SELECT `post_id`, `post_category_id`, `post_title`,"
-                . " `post_author`, `post_date`, `post_image`, `post_content`,"
-                . " `post_tags`, `post_comment_count`, `post_views_count`,"
-                . " `post_status` FROM `posts`";
+        $query = "SELECT `post_id`, `category`.`category_title`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`,`post_comment_count`, `post_views_count`, `post_status` FROM `posts` LEFT JOIN `category` ON `category_id` = `post_category_id`;";
         if ($this->performQuery($query)) {
             return parent::fetchAll();
         } else {
@@ -124,7 +124,7 @@ class Post extends Database {
             die($this->getMysqliError());
         } else {
             if (!empty($this->image_name)) {
-                move_uploaded_file($this->image_content, DIR . $this->image_name);
+                move_uploaded_file($this->image_content, FILE_DIR . $this->image_name);
             }
         }
     }

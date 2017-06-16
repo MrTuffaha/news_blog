@@ -68,7 +68,7 @@ if (isset($_REQUEST['editCategory'])) {
                                     <div class="form-group">
                                         <label for="category_text">Edit Category</label>
                                         <input type="hidden" name="category_id" value="<?php echo isset($oldCategoryId) ? $oldCategoryId : "" ?>">
-                                        <input name="category" type="text" class="form-control" id="category_text" value="<?php echo isset($oldCategory) ? $oldCategory : "" ?>">
+                                        <input name="category" type="text" class="form-control" id="category_text" value="<?php echo isset($oldCategory) ? $editCategories->decodeIllegalChar($oldCategory) : "" ?>">
                                     </div>
                                     <div class="form-group">
                                         <input name="editCategory" value="Edit Category" type="submit" class="btn btn-primary" id="submit_button" >
@@ -93,7 +93,7 @@ if (isset($_REQUEST['editCategory'])) {
                                             foreach ($categoriesList as $row) {
                                                 echo "<tr>";
                                                 echo "<td>{$row['category_id']}</td>";
-                                                echo "<td>{$row['category_title']}</td>";
+                                                echo "<td>{$categories->decodeIllegalChar($row['category_title'])}</td>";
                                                 echo "<td><a href='categories.php?delete={$row['category_id']}'>Delete</a> "
                                                 . "/ <a href='categories.php?edit_id={$row['category_id']}'>Edit</a></td>";
                                                 echo "</tr>";

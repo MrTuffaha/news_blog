@@ -1,6 +1,7 @@
 <?php
 
 include_once 'config.php';
+//include_once 'default.php';
 
 /**
  * @ClassName : MySql Database Class
@@ -107,7 +108,7 @@ class Database {
         return $string;
     }
 
-    protected function decodeIllegalChar($string) {
+    public function decodeIllegalChar($string) {
 
         $string = str_replace("%21", "'", $string);
         //$string = str_replace("%22", "-", $string);

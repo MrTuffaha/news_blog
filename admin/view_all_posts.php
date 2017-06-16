@@ -36,16 +36,16 @@ if (isset($_REQUEST['source']) && $_REQUEST['source'] == "delete_post") {
             foreach ($postsList as $row) {
                 echo "<tr>";
                 echo "<td>{$row['post_id']}</td>";
-                echo "<td>{$row['post_author']}</td>";
-                echo "<td>{$row['post_title']}</td>";
-                echo "<td>{$row['post_category_id']}</td>";
-                echo "<td>{$row['post_status']}</td>";
+                echo "<td>{$posts->decodeIllegalChar($row['post_author'])}</td>";
+                echo "<td>{$posts->decodeIllegalChar($row['post_title'])}</td>";
+                echo "<td>{$posts->decodeIllegalChar($row['category_title'])}</td>";
+                echo "<td>{$posts->decodeIllegalChar($row['post_status'])}</td>";
                 echo "<td>";
                 if (!empty($row['post_image'])) {
                     echo "<img width='100' src='../{$row['post_image']}' alt='post image'>";
                 }
                 echo "</td>";
-                echo "<td>{$row['post_tags']}</td>";
+                echo "<td>{$posts->decodeIllegalChar($row['post_tags'])}</td>";
                 echo "<td>{$row['post_comment_count']}</td>";
                 echo "<td>{$row['post_date']}</td>";
                 echo "<td><a href='posts.php?source=edit_post&post_id={$row['post_id']}'>edit</a></td>";

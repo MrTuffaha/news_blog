@@ -13,6 +13,10 @@ if (isset($_REQUEST['add_post'])) {
     $newPost->setContent($_POST['content']);
     $newPost->createPost();
     header("location: posts.php");
+} else {
+    include_once '../includes/Category.php';
+    $category = new Category();
+    $categoryList = $category->fetchAll();
 }
 ?>
 <form method="POST" action="" enctype="multipart/form-data">
@@ -22,8 +26,16 @@ if (isset($_REQUEST['add_post'])) {
         <input class="form-control" name="title" id="post_title" type="text">
     </div>
     <div class="form-group">
-        <label for="post_category">Category</label>
-        <input class="form-control" name="category" id="post_category" type="text">
+        <label for="post_category">Category</label><br>
+        <select name="category">
+            <?php
+            if (!empty($categoryList)) {
+                foreach ($categoryList as $row) {
+                    echo "<option value='{$row['category_id']}'>{$row['category_title']}</option>";
+                }
+            }
+            ?>
+        </select>
     </div>
     <div class="form-group">
         <label for="post_author">Author</label>
