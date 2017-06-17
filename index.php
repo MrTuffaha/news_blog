@@ -49,6 +49,7 @@ include_once 'includes/header.php';
                     $post_author = $posts->decodeIllegalChar($row['post_author']);
                     $post_status = $posts->decodeIllegalChar($row['post_status']);
                     $post_content = $posts->decodeIllegalChar($row['post_content']);
+                    $post_content = substr($post_content,0,1000)." ...";
                     $post_date = $row['post_date'];
                     ?>
 

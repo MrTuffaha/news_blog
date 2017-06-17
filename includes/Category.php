@@ -2,7 +2,7 @@
 
 /**
  * @author: Omar Tuffaha <omar_tuffaha@hotmail.com>
- * @description: This is a class that will all movements on Posts
+ * @description: This is a class that will all movements on Category
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
  * @Class: Category
  *

@@ -61,7 +61,7 @@ class Post extends Database {
      * @return lists of post
      */
     public function fetchAll() {
-        $query = "SELECT `post_id`, `category`.`category_title`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`,`post_comment_count`, `post_views_count`, `post_status` FROM `posts` LEFT JOIN `category` ON `category_id` = `post_category_id`;";
+        $query = "SELECT `post_id`, `category`.`category_title`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`,`post_comment_count`, `post_views_count`, `post_status` FROM `posts` LEFT JOIN `category` ON `category_id` = `post_category_id` ORDER BY `post_date` DESC;";
         if ($this->performQuery($query)) {
             return parent::fetchAll();
         } else {
@@ -93,7 +93,7 @@ class Post extends Database {
         $query = "SELECT `post_id`, `post_category_id`, `post_title`,"
                 . " `post_author`, `post_date`, `post_image`, `post_content`,"
                 . " `post_tags`, `post_comment_count`, `post_views_count`,"
-                . " `post_status` FROM `posts` WHERE `post_category_id` = '$id'";
+                . " `post_status` FROM `posts` WHERE `post_category_id` = '$id' ORDER BY `post_date` DESC";
         if ($this->performQuery($query)) {
             return parent::fetchAll();
         } else {
@@ -107,7 +107,7 @@ class Post extends Database {
         $query = "SELECT `post_id`, `post_category_id`, `post_title`,"
                 . " `post_author`, `post_date`, `post_image`, `post_content`,"
                 . " `post_tags`, `post_comment_count`, `post_views_count`,"
-                . " `post_status` FROM `posts` WHERE `post_tags` LIKE '%$search%'";
+                . " `post_status` FROM `posts` WHERE `post_tags` LIKE '%$search%' ORDER BY `post_date` DESC";
         if ($this->performQuery($query)) {
             return parent::fetchAll();
         } else {
