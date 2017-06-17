@@ -118,7 +118,7 @@ include_once 'includes/header.php';
             }
             ?>
 
-            <!-- Comment -->
+            <!--Comment 
             <div class="media">
                 <a class="pull-left" href="#">
                     <img class="media-object" src="http://placehold.it/64x64" alt="">
@@ -131,7 +131,7 @@ include_once 'includes/header.php';
 
 
 
-                    <!-- Nested Comment
+                     Nested Comment
                     <div class="media">
                         <a class="pull-left" href="#">
                             <img class="media-object" src="http://placehold.it/64x64" alt="">
@@ -143,9 +143,9 @@ include_once 'includes/header.php';
                             Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                         </div>
                     </div>
-                    <!-- End Nested Comment -->
+                    <!-- End Nested Comment 
                 </div>
-            </div>
+            </div>-->
 
         </div>
 

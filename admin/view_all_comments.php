@@ -1,11 +1,27 @@
 <?php
-if (isset($_REQUEST['source']) && $_REQUEST['source'] == "delete_post") {
-    if (!empty(($_REQUEST['post_id']))) {
-        $post = new Post();
-        $post->deletePost($_REQUEST['post_id']);
-        header("location: posts.php");
+if (isset($_REQUEST['delete_comment'])) {
+    if (!empty(($_REQUEST['delete_comment']))) {
+        $comment = new Comment();
+        $comment->deleteComment($_REQUEST['delete_comment']);
+        header("location: comments.php");
     } else {
-        header("location: posts.php");
+        header("location: comments.php");
+    }
+} else if (isset($_REQUEST['approve_comment'])) {
+    if (!empty(($_REQUEST['approve_comment']))) {
+        $comment = new Comment();
+        $comment->approveOrDenyComment($_REQUEST['approve_comment'],'approved');
+        header("location: comments.php");
+    } else {
+        header("location: comments.php");
+    }
+} else if (isset($_REQUEST['deny_comment'])) {
+    if (!empty(($_REQUEST['deny_comment']))) {
+        $comment = new Comment();
+        $comment->approveOrDenyComment($_REQUEST['deny_comment'],'denied');
+        header("location: comments.php");
+    } else {
+        header("location: comments.php");
     }
 }
 ?>
@@ -29,36 +45,36 @@ if (isset($_REQUEST['source']) && $_REQUEST['source'] == "delete_post") {
         </tr>
     </thead>
     <tbody>
-        <?php
-        $comment = new Comment();
-        $commentList = $comment->fetchAll();
-        if (!empty($commentList)) {
-            foreach ($commentList as $row) {
-                $commentID = $row['comment_id'];
-                $postID = $row['post_id'];
-                $commentAuthor = $comment->decodeIllegalChar($row['comment_author']);
-                $commentEmail = $comment->decodeIllegalChar($row['comment_email']);
-                $commentContent = $comment->decodeIllegalChar($row['comment_content']);
-                $commentStatus = $comment->decodeIllegalChar($row['comment_status']);
-                $commentDate = $comment->decodeIllegalChar($row['comment_date']);
-                $commentPost = $comment->decodeIllegalChar($row['post_title']);
-                
-                
-                
-                echo "<tr>";
-                echo "<td>{$commentID}</td>";
-                echo "<td>{$commentAuthor}</td>";
-                echo "<td>{$commentContent}</td>";
-                echo "<td>{$commentEmail}</td>";
-                echo "<td>{$commentStatus}</td>";
-                echo "<td><a href='../post.php?post_id={$postID}'>{$commentPost}</a></td>";
-                echo "<td>{$commentDate}</td>";
-                echo "<td><a href=''>Approve</a></td>";
-                echo "<td><a href=''>Deny</a></td>";
-                echo "<td><a href=''>Delete</a></td>";
-                echo "</tr>";
-            }
-        }
-        ?>
+<?php
+$comment = new Comment();
+$commentList = $comment->fetchAll();
+if (!empty($commentList)) {
+    foreach ($commentList as $row) {
+        $commentID = $row['comment_id'];
+        $postID = $row['post_id'];
+        $commentAuthor = $comment->decodeIllegalChar($row['comment_author']);
+        $commentEmail = $comment->decodeIllegalChar($row['comment_email']);
+        $commentContent = $comment->decodeIllegalChar($row['comment_content']);
+        $commentStatus = $comment->decodeIllegalChar($row['comment_status']);
+        $commentDate = $comment->decodeIllegalChar($row['comment_date']);
+        $commentPost = $comment->decodeIllegalChar($row['post_title']);
+
+
+
+        echo "<tr>";
+        echo "<td>{$commentID}</td>";
+        echo "<td>{$commentAuthor}</td>";
+        echo "<td>{$commentContent}</td>";
+        echo "<td>{$commentEmail}</td>";
+        echo "<td>{$commentStatus}</td>";
+        echo "<td><a href='../post.php?post_id={$postID}'>{$commentPost}</a></td>";
+        echo "<td>{$commentDate}</td>";
+        echo "<td><a href='comments.php?approve_comment={$commentID}'>Approve</a></td>";
+        echo "<td><a href='comments.php?deny_comment={$commentID}'>Deny</a></td>";
+        echo "<td><a href='comments.php?delete_comment={$commentID}'>Delete</a></td>";
+        echo "</tr>";
+    }
+}
+?>
     </tbody>
 </table>
