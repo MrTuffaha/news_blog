@@ -50,7 +50,7 @@
                 <a href="categories.php"><i class="fa fa-fw fa-table"></i> Categories</a>
             </li>
             <li>
-                <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Comments</a>
+                <a href="comments.php"><i class="fa fa-fw fa-desktop"></i> Comments</a>
             </li>
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#users_dropdown"><i class="fa fa-fw fa-arrows-v"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>

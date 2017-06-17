@@ -28,7 +28,16 @@ class Comment extends Database {
     }
 
 
+    public function fetchAll() {
+        $query = "SELECT `comment_id`, `comment_post_id`,`post_title`,`post_id`, `comment_author`, `comment_email`, `comment_content`, `comment_status`, `comment_date` FROM `comment` JOIN `posts` ON `post_id` = `comment_post_id`;";
+        if ($this->performQuery($query)) {
+            return parent::fetchAll();
+        } else {
+            return NULL;
+        }
+    }
     
+
     public function fetchByPost($id) {
         $id = $this->run_mysql_real_escape_string($id);
         $query = "SELECT `comment_id`, `comment_post_id`, `comment_author`, `comment_email`, `comment_content`, `comment_status`, `comment_date` FROM `comment` JOIN `posts` ON `post_id` = `comment_post_id` AND `post_id` = '$id' ORDER BY `comment_date` DESC;";
