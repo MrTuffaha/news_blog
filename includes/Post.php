@@ -68,15 +68,34 @@ class Post extends Database {
             return NULL;
         }
     }
+    
 
     public function fetchById($id) {
+        $id = $this->run_mysql_real_escape_string($id);
+        $query = "SELECT `post_id`, `category`.`category_title`, `post_title`,"
+                . " `post_author`, `post_date`, `post_image`, `post_content`,"
+                . " `post_tags`,`post_comment_count`, `post_views_count`,"
+                . " `post_status` "
+                . "FROM (SELECT `post_id`, `post_category_id`, `post_title`,"
+                . " `post_author`, `post_date`, `post_image`, `post_content`,"
+                . " `post_tags`, `post_comment_count`, `post_views_count`,"
+                . " `post_status` FROM `posts` WHERE `post_id` = '$id') AS `posts` "
+                . "LEFT JOIN  `category` ON `category_id` = `post_category_id`;";
+        if ($this->performQuery($query)) {
+            return parent::fetchAll()[0];
+        } else {
+            return NULL;
+        }
+    }
+    
+    public function fetchByCategory($id) {
         $id = $this->run_mysql_real_escape_string($id);
         $query = "SELECT `post_id`, `post_category_id`, `post_title`,"
                 . " `post_author`, `post_date`, `post_image`, `post_content`,"
                 . " `post_tags`, `post_comment_count`, `post_views_count`,"
-                . " `post_status` FROM `posts` WHERE `post_id` = '$id'";
+                . " `post_status` FROM `posts` WHERE `post_category_id` = '$id'";
         if ($this->performQuery($query)) {
-            return parent::fetchAll()[0];
+            return parent::fetchAll();
         } else {
             return NULL;
         }
@@ -101,7 +120,7 @@ class Post extends Database {
     public function createPost() {
         $date = date('Y-m-d');
         $query = "INSERT INTO `posts`(`post_category_id`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_views_count`, `post_status`) "
-                . "             VALUES ('$this->category','$this->title','$this->author','$date','$this->image_name','$this->content','$this->tags','0','0','$this->status');";
+                . " VALUES ('$this->category','$this->title','$this->author','$date','$this->image_name','$this->content','$this->tags','0','0','$this->status');";
         if (!$this->performQuery($query)) {
             die($this->getMysqliError());
         } else {

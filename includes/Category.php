@@ -12,7 +12,7 @@ include_once 'Database.php';
 class Category extends Database {
 
     public function fetchAll() {
-        $query = "SELECT `category_id`, `category_title` FROM `category`";
+        $query = "SELECT `category_id`, `category_title`,count(`post_id`) AS `count` FROM `category` LEFT JOIN `posts` ON `category_id` = `post_category_id` GROUP BY `category_id`;";
         if ($this->performQuery($query)) {
             return parent::fetchAll();
         } else {

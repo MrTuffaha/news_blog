@@ -19,8 +19,22 @@ include_once 'includes/header.php';
             </h1>
             <?php
             $posts = new Post();
-            if (isset($_REQUEST['search']) && !empty($_REQUEST['search'])) {
-                $postList = $posts->searchAll($_REQUEST['search']);
+
+
+            if (isset($_REQUEST['option']) && !empty($_REQUEST['option'])) {
+                //$postList = $posts->searchAll($_REQUEST['search']);
+                switch ($_REQUEST['option']) {
+                    case 'search':
+                        $postList = $posts->searchAll($_REQUEST['search']);
+                        break;
+                    case 'category':
+                        $postList = $posts->fetchByCategory($_REQUEST['cat_id']);
+                        
+                        break;
+                    default :
+                        $postList = $posts->fetchAll();
+                        break;
+                }
             } else {
                 $postList = $posts->fetchAll();
             }
@@ -48,7 +62,7 @@ include_once 'includes/header.php';
                     </p>
                     <p><span class="glyphicon glyphicon-time"></span><?php echo $post_date; ?></p>
                     <hr>
-                    <img class="img-responsive thumbnail" src="<?php echo DIR.$post_image; ?>" alt="">
+                    <img class="img-responsive thumbnail" src="<?php echo DIR . $post_image; ?>" alt="">
                     <hr>
                     <p><?php echo $post_content; ?></p>
                     <a class="btn btn-primary" href="post.php?post_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>

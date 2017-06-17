@@ -5,6 +5,7 @@
         <h4>Blog Search</h4>
         <form method="GET">
             <div class="input-group">
+                <input name="option" type="hidden" value="search">
                 <input name="search" type="text" class="form-control">
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="submit">
@@ -29,9 +30,12 @@
                         $categoriesList = $categories->fetchAll();
                         if (!empty($categoriesList)) {
                             foreach ($categoriesList as $row) {
+                                $categoryTitle = $categories->decodeIllegalChar($row['category_title']);
+                                $categoryID = $row['category_id'];
+                                $categoryCount = $row['count'];
                                 ?>
                                 <div class="col-lg-6">
-                                    <li><a href="#"><?php echo $categories->decodeIllegalChar($row['category_title']) ?></a>
+                                    <li><a href="index.php?option=category&cat_id=<?php echo $categoryID;?>"><?php echo $categoryTitle; ?></a> <span class="badge"><?php echo $categoryCount; ?></span> 
                                     </li>
                                 </div>
                             <?php }//end of foreach
