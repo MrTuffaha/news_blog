@@ -48,7 +48,8 @@ class Post extends Database {
     function setImage_name($image_name) {
         $image_name = strtolower($image_name);
         $tmp = explode('.', $image_name);
-        $image_name = uniqid("img_").".".$tmp[1];
+        $ext = end($tmp);
+        $image_name = uniqid("img_").".".$ext;
         $this->image_name = "images/" . $image_name;
     }
 

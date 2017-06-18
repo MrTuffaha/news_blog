@@ -1,6 +1,6 @@
 <?php
 include_once 'includes/header.php';
-include_once '../includes/Comment.php';
+include_once '../includes/User.php';
 ?>
 <div id="wrapper">
 
@@ -19,7 +19,17 @@ include_once '../includes/Comment.php';
                         <small>Omar</small>
                     </h1>
                     <?php
-                    include_once 'view_all_comments.php';
+                    if (isset($_GET['source'])) {
+                        if ($_GET['source'] == "add_user") {
+                            include_once 'add_user.php';
+                        } else if ($_GET['source'] == "edit_user") {
+                            include_once 'edit_user.php';
+                        } else {
+                            include_once 'view_all_users.php';
+                        }
+                    } else {
+                        include_once 'view_all_users.php';
+                    }
                     ?>
 
 
