@@ -27,13 +27,13 @@ include_once 'includes/header.php';
             if (!empty($thisPost)) {
                 $post_id = $thisPost['post_id'];
                 $post_image = $thisPost['post_image'];
-                $post_tags = $posts->decodeIllegalChar($thisPost['post_tags']);
+                $post_tags = $thisPost['post_tags'];
                 $post_comment_count = $thisPost['post_comment_count'];
                 $post_views_count = $thisPost['post_views_count'];
-                $post_title = $posts->decodeIllegalChar($thisPost['post_title']);
-                $post_author = $posts->decodeIllegalChar($thisPost['post_author']);
-                $post_status = $posts->decodeIllegalChar($thisPost['post_status']);
-                $post_content = $posts->decodeIllegalChar($thisPost['post_content']);
+                $post_title = $thisPost['post_title'];
+                $post_author = $thisPost['post_author'];
+                $post_status = $thisPost['post_status'];
+                $post_content = $thisPost['post_content'];
                 $post_date = $thisPost['post_date'];
                 ?>
 
@@ -54,7 +54,7 @@ include_once 'includes/header.php';
                 <?php
             } else {
                 header("location: index.php");
-            }//end of if (isset($_REQUEST['post_id'])) 
+            }//end of if (isset($_REQUEST['post_id']))
             ?>
 
 
@@ -90,7 +90,7 @@ include_once 'includes/header.php';
             if(isset($_REQUEST['add_comment'])){
                 $createComment = new Comment();
                 $createComment->setAuthor($_POST['comment_author']);
-                $createComment->setEmail($_POST['comment_email']);                
+                $createComment->setEmail($_POST['comment_email']);
                 $createComment->setContent($_POST['comment_content']);
                 $createComment->createComment($_REQUEST['post_id']);
             }
@@ -98,10 +98,10 @@ include_once 'includes/header.php';
             if (!empty($commentList)) {
                 foreach ($commentList as $row) {
                     $commentID = $row['comment_id'];
-                    $commentAuthor = $comment->decodeIllegalChar($row['comment_author']);
-                    $commentEmail = $comment->decodeIllegalChar($row['comment_email']);
-                    $commentContent = $comment->decodeIllegalChar($row['comment_content']);
-                    $commentDate = $comment->decodeIllegalChar($row['comment_date']);
+                    $commentAuthor = $row['comment_author'];
+                    $commentEmail = $row['comment_email'];
+                    $commentContent = $row['comment_content'];
+                    $commentDate = $row['comment_date'];
                     ?>
 
                     <!-- Comment -->
@@ -110,7 +110,7 @@ include_once 'includes/header.php';
                             <h4 class="media-heading"><?php echo $commentAuthor; ?>
                                 <small>  <?php echo $commentDate; ?></small>
                             </h4>
-                            <p><?php echo $commentContent; ?></p>  
+                            <p><?php echo $commentContent; ?></p>
                         </div>
                     </div>
 
@@ -118,7 +118,7 @@ include_once 'includes/header.php';
             }
             ?>
 
-            <!--Comment 
+            <!--Comment
             <div class="media">
                 <a class="pull-left" href="#">
                     <img class="media-object" src="http://placehold.it/64x64" alt="">
@@ -143,7 +143,7 @@ include_once 'includes/header.php';
                             Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
                         </div>
                     </div>
-                    <!-- End Nested Comment 
+                    <!-- End Nested Comment
                 </div>
             </div>-->
 

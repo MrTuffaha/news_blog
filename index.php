@@ -29,26 +29,26 @@ include_once 'includes/header.php';
                         break;
                     case 'category':
                         $postList = $posts->fetchByCategory($_REQUEST['cat_id']);
-                        
+
                         break;
                     default :
-                        $postList = $posts->fetchAll();
+                        $postList = $posts->fetchAllPublished();
                         break;
                 }
             } else {
-                $postList = $posts->fetchAll();
+                $postList = $posts->fetchAllPublished();
             }
             if (!empty($postList)) {
                 foreach ($postList as $row) {
                     $post_id = $row['post_id'];
                     $post_image = $row['post_image'];
-                    $post_tags = $posts->decodeIllegalChar($row['post_tags']);
+                    $post_tags = $row['post_tags'];
                     $post_comment_count = $row['post_comment_count'];
                     $post_views_count = $row['post_views_count'];
-                    $post_title = $posts->decodeIllegalChar($row['post_title']);
-                    $post_author = $posts->decodeIllegalChar($row['post_author']);
-                    $post_status = $posts->decodeIllegalChar($row['post_status']);
-                    $post_content = $posts->decodeIllegalChar($row['post_content']);
+                    $post_title = $row['post_title'];
+                    $post_author = $row['post_author'];
+                    $post_status = $row['post_status'];
+                    $post_content = $row['post_content'];
                     $post_content = substr($post_content,0,1000)." ...";
                     $post_date = $row['post_date'];
                     ?>
@@ -73,12 +73,12 @@ include_once 'includes/header.php';
                 }//end of foreach
             } else {
                 echo "<h2>No posts found</h2>";
-            }//end of if (isset($_REQUEST['search'])) 
+            }//end of if (isset($_REQUEST['search']))
             ?>
 
             <!--
 
-            <!-- Pager 
+            <!-- Pager
             <ul class="pager">
                 <li class="previous">
                     <a href="#">&larr; Older</a>

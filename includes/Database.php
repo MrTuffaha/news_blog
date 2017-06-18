@@ -92,33 +92,9 @@ class Database {
 
 
     protected function run_mysql_real_escape_string($string) {
-        $string = Database::encodeIllegalCharAndFilter($string);
         return mysqli_escape_string($this->conn, $string);
     }
 
-     protected function encodeIllegalCharAndFilter($string) {
-
-        $string = str_replace("'", "%21", $string);
-        //$string = str_replace("-", "%22", $string);
-        //$string = str_replace(".", "%23", $string);
-        $string = str_replace("\"", "%24", $string);
-        $string = str_replace("\\", "%25", $string);
-        //$string = str_replace("/", "%26", $string);
-        //$string = str_replace(" ", "%27", $string);
-        return $string;
-    }
-
-    public function decodeIllegalChar($string) {
-
-        $string = str_replace("%21", "'", $string);
-        //$string = str_replace("%22", "-", $string);
-        //$string = str_replace("%23", ".", $string);
-        $string = str_replace("%24", "\"", $string);
-        $string = str_replace("%25","\\", $string);
-        //$string = str_replace("%26","/", $string);
-        //$string = str_replace("%27"," ", $string);
-        return $string;
-    }
 
     protected function getMysqliError() {
         return mysqli_error($this->conn);

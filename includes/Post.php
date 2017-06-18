@@ -69,18 +69,23 @@ class Post extends Database {
         }
     }
     
+    public function fetchAllPublished() {
+        $query = "SELECT `post_id`, `category`.`category_title`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`,`post_comment_count`, `post_views_count`, `post_status` FROM `posts` LEFT JOIN `category` ON `category_id` = `post_category_id` WHERE `post_status` = 'published' ORDER BY `post_date` DESC;";
+        if ($this->performQuery($query)) {
+            return parent::fetchAll();
+        } else {
+            return NULL;
+        }
+    }
+    
 
     public function fetchById($id) {
         $id = $this->run_mysql_real_escape_string($id);
         $query = "SELECT `post_id`, `category`.`category_title`, `post_title`,"
                 . " `post_author`, `post_date`, `post_image`, `post_content`,"
-                . " `post_tags`,`post_comment_count`, `post_views_count`,"
-                . " `post_status` "
-                . "FROM (SELECT `post_id`, `post_category_id`, `post_title`,"
-                . " `post_author`, `post_date`, `post_image`, `post_content`,"
-                . " `post_tags`, `post_comment_count`, `post_views_count`,"
-                . " `post_status` FROM `posts` WHERE `post_id` = '$id') AS `posts` "
-                . "LEFT JOIN  `category` ON `category_id` = `post_category_id`;";
+                . "`post_tags`,`post_comment_count`, `post_views_count`, `post_status`"
+                . "  FROM `posts` LEFT JOIN  `category` ON `category_id` = `post_category_id`"
+                . " WHERE `post_id` = '$id';";
         if ($this->performQuery($query)) {
             return parent::fetchAll()[0];
         } else {
@@ -93,7 +98,7 @@ class Post extends Database {
         $query = "SELECT `post_id`, `post_category_id`, `post_title`,"
                 . " `post_author`, `post_date`, `post_image`, `post_content`,"
                 . " `post_tags`, `post_comment_count`, `post_views_count`,"
-                . " `post_status` FROM `posts` WHERE `post_category_id` = '$id' ORDER BY `post_date` DESC";
+                . " `post_status` FROM `posts` WHERE `post_category_id` = '$id' AND `post_status` = 'published'  ORDER BY `post_date` DESC";
         if ($this->performQuery($query)) {
             return parent::fetchAll();
         } else {
@@ -107,7 +112,7 @@ class Post extends Database {
         $query = "SELECT `post_id`, `post_category_id`, `post_title`,"
                 . " `post_author`, `post_date`, `post_image`, `post_content`,"
                 . " `post_tags`, `post_comment_count`, `post_views_count`,"
-                . " `post_status` FROM `posts` WHERE `post_tags` LIKE '%$search%' ORDER BY `post_date` DESC";
+                . " `post_status` FROM `posts` WHERE `post_tags` LIKE '%$search%' AND `post_status` = 'published'  ORDER BY `post_date` DESC";
         if ($this->performQuery($query)) {
             return parent::fetchAll();
         } else {

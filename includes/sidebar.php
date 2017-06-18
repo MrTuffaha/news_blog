@@ -30,12 +30,12 @@
                         $categoriesList = $categories->fetchAll();
                         if (!empty($categoriesList)) {
                             foreach ($categoriesList as $row) {
-                                $categoryTitle = $categories->decodeIllegalChar($row['category_title']);
+                                $categoryTitle = $row['category_title'];
                                 $categoryID = $row['category_id'];
                                 $categoryCount = $row['count'];
                                 ?>
-                                <div class="col-lg-6">
-                                    <li><a href="index.php?option=category&cat_id=<?php echo $categoryID;?>"><?php echo $categoryTitle; ?></a> <span class="badge"><?php echo $categoryCount; ?></span> 
+                                <div class="col-sm-6">
+                                    <li><a href="index.php?option=category&cat_id=<?php echo $categoryID;?>"><?php echo $categoryTitle; ?></a> <span class="badge"><?php echo $categoryCount; ?></span>
                                     </li>
                                 </div>
                             <?php }//end of foreach
@@ -44,7 +44,7 @@
                     </div>
                 </ul>
             </div>
-            <!-- /.col-lg-6 
+            <!-- /.col-lg-6
             <div class="col-lg-6">
                 <ul class="list-unstyled">
                     <li><a href="#">Category Name</a>

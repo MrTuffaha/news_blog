@@ -52,12 +52,12 @@ if (!empty($commentList)) {
     foreach ($commentList as $row) {
         $commentID = $row['comment_id'];
         $postID = $row['post_id'];
-        $commentAuthor = $comment->decodeIllegalChar($row['comment_author']);
-        $commentEmail = $comment->decodeIllegalChar($row['comment_email']);
-        $commentContent = $comment->decodeIllegalChar($row['comment_content']);
-        $commentStatus = $comment->decodeIllegalChar($row['comment_status']);
-        $commentDate = $comment->decodeIllegalChar($row['comment_date']);
-        $commentPost = $comment->decodeIllegalChar($row['post_title']);
+        $commentAuthor = $row['comment_author'];
+        $commentEmail = $row['comment_email'];
+        $commentContent = $row['comment_content'];
+        $commentStatus = $row['comment_status'];
+        $commentDate = $row['comment_date'];
+        $commentPost = $row['post_title'];
 
 
 
