@@ -57,9 +57,9 @@ class User extends Database {
             return NULL;
         }
     }
-    
+
     public function fetchById($id) {
-        $query = "SELECT `user_id`, `user_name`, `user_password`, `user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_role`, `user_randSalt` FROM `user` WHERE `user_id` = '$id'";
+        $query = "SELECT `user_id`, `user_name`, `user_password`, `user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_role`, `user_randSalt` FROM `user` WHERE `user_id` = '$id';";
         if ($this->performQuery($query)) {
             return parent::fetchAll()[0];
         } else {
@@ -78,8 +78,8 @@ class User extends Database {
             }
         }
     }
-    
-    public function changeRole($id,$role){
+
+    public function changeRole($id, $role) {
         $id = $this->run_mysql_real_escape_string($id);
         $role = $this->run_mysql_real_escape_string($role);
         $query = "UPDATE `user` SET `user_role` = '$role' WHERE `user_id` = '$id';";
@@ -87,21 +87,39 @@ class User extends Database {
             die($this->getMysqliError());
         }
     }
-    
-    public function deleteUser($id){
+
+    public function deleteUser($id) {
         $id = $this->run_mysql_real_escape_string($id);
         $query = "DELETE FROM `user` WHERE `user_id` = '$id'";
         if (!$this->performQuery($query)) {
             die($this->getMysqliError());
-        } 
+        }
     }
-    
-    public function updateUser($id){
+
+    public function updateUser($id) {
         $id = $this->run_mysql_real_escape_string($id);
         $query = "DELETE FROM `user` WHERE `user_id` = '$id'";
         if (!$this->performQuery($query)) {
             die($this->getMysqliError());
-        } 
+        }
+    }
+
+    public function auth($username, $password) {
+        $username = $this->run_mysql_real_escape_string($username);
+        $password = $this->run_mysql_real_escape_string($password);
+        $query = "SELECT `user_id`, `user_name`, `user_password`, `user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_role`, `user_randSalt` FROM `user` WHERE `user_name` = '$username'";
+        if ($this->performQuery($query)) {
+            $thisUser = parent::fetchAll()[0];
+            if (empty($thisUser)) {
+                return FALSE;
+            } else {
+                if (password_verify($password, $thisUser['user_password'])) {
+                    return $thisUser;
+                } else {
+                    return FALSE;
+                }
+            }
+        }
     }
 
 }
