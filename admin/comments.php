@@ -8,31 +8,10 @@ include_once '../includes/Comment.php';
     <?php include_once 'includes/navigation.php'; ?>
 
 
-    <div id="page-wrapper">
-        <div class="container-fluid">
+    <?php include_once 'includes/content_head.php'; ?>
+    <?php
+    include_once 'view_all_comments.php';
+    ?>
 
-            <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Welcome To Admin
-                        <small>Omar</small>
-                    </h1>
-                    <?php
-                    include_once 'view_all_comments.php';
-                    ?>
-
-
-                </div>
-            </div>
-            <!-- /.row -->
-
-        </div>
-        <!-- /.container-fluid -->
-
-    </div>
-    <!-- /#page-wrapper -->
-
-</div>
-<!-- /#wrapper -->
-<?php include_once 'includes/footer.php'; ?>
+    
+    <?php include_once 'includes/footer.php'; ?>

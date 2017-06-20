@@ -1,5 +1,14 @@
 <?php
 ob_start();
+include_once '../includes/default.php';
+session_start();
+if(isset($_SESSION['role'])){
+    if($_SESSION['role']!=='admin'){
+        header('location: '.DIR.'index.php');
+    }
+}else{
+    header('location: '.DIR.'index.php');
+}
 ?>
 
 <!DOCTYPE html>

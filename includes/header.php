@@ -1,7 +1,8 @@
-<?php 
-//include_once 'default.php';
+<?php
+include_once 'default.php';
 include_once 'includes/Post.php';
 include_once 'includes/Category.php';
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +22,8 @@ include_once 'includes/Category.php';
 
         <!-- Custom CSS -->
         <link href="css/blog-home.css" rel="stylesheet">
+        <!-- Custom Fonts -->
+        <link href="admin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
