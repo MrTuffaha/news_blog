@@ -21,16 +21,20 @@ if (isset($_REQUEST['delete_user'])) {
 
 
 
-<table class="table table-striped table-bordered">
+<table id="myTable" class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Date</th>
+            <td>ID</td>
+            <td>Username</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Email</td>
+            <td>Role</td>
+            <td>Date</td>
+            <td>option</td>
+            <td>option</td>
+            <td>option</td>
+            <td>option</td>
         </tr>
     </thead>
     <tbody>

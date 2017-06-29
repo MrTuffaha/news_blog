@@ -29,7 +29,7 @@ if (isset($_REQUEST['delete_comment'])) {
 
 
 
-<table class="table table-striped table-bordered">
+<table id="myTable" class="table table-striped table-bordered">
     <thead>
         <tr>
             <th>ID</th>

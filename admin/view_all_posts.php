@@ -13,19 +13,19 @@ if (isset($_REQUEST['source']) && $_REQUEST['source'] == "delete_post") {
 
 
 
-<table class="table table-striped table-bordered">
+<table id="myTable" class="table table-striped table-bordered">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Author</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Status</th>
-            <th>Image</th>
-            <th>Tag</th>
-            <th>Comment</th>
-            <th>Date</th>
-            <th colspan="2">Options</th>
+            <td>ID</td>
+            <td>Author</td>
+            <td>Title</td>
+            <td>Category</td>
+            <td>Status</td>
+            <td>Image</td>
+            <td>Tag</td>
+            <td>Comment</td>
+            <td>Date</td>
+            <td>Options</td>
         </tr>
     </thead>
     <tbody>
@@ -48,8 +48,8 @@ if (isset($_REQUEST['source']) && $_REQUEST['source'] == "delete_post") {
                 echo "<td>{$row['post_tags']}</td>";
                 echo "<td>{$row['post_comment_count']}</td>";
                 echo "<td>{$row['post_date']}</td>";
-                echo "<td><a href='posts.php?source=edit_post&post_id={$row['post_id']}'>edit</a></td>";
-                echo "<td><a href='posts.php?source=delete_post&post_id={$row['post_id']}'>Delete</a></td>";
+                echo "<td><a href='posts.php?source=edit_post&post_id={$row['post_id']}'>edit</a>";
+                echo "/<a href='posts.php?source=delete_post&post_id={$row['post_id']}'>Delete</a></td>";
                 echo "</tr>";
             }
         }

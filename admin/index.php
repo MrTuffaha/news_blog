@@ -136,49 +136,55 @@ include_once '../includes/Dashboard.php';
             </div>
             <!-- /.row -->
             <div class="row">
-                <div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>
+                <div id="columnchart_material" style="width: 'auto'; height: 500px;">
+                </div>
             </div>
 
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+    <!-- /#page-wrapper -->
 
 
-            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-            <script type="text/javascript">
-                google.charts.load('current', {'packages': ['bar']});
-                google.charts.setOnLoadCallback(drawChart);
+</div>
+<!-- /#wrapper -->
 
-                function drawChart() {
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages': ['bar']});
+    google.charts.setOnLoadCallback(drawChart);
 
-                    var data = google.visualization.arrayToDataTable([
-                        ['Data', 'Count'],
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+
+            ['Data', 'Count'],
+
 <?php
 $dataList = array("Posts Published" => $postPublished, 'Posts Draft' => $postDrafts, 'Users' => $usersNum, 'Subscribers' => $subscribersNum, 'Comments' => $commentsNum, 'Pending Comments' => $pendingCommenstNum, 'Categories' => $categoriesNum);
-$array_count = count($dataList);
-$count = 1;
+$count = count($dataList);
 foreach ($dataList as $key => $value) {
-    if ($count == $array_count) {
+    if ($count === 1) {
         echo "['$key',$value]";
     } else {
         echo "['$key',$value],";
-        $count++;
+        $count--;
     }
 }
 ?>
+        ]);
 
-                    ]);
+        var options = {
+            chart: {
+                title: '',
+                subtitle: '',
+            }
+        };
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
-                    var options = {
-                        chart: {
-                            title: 'Company Performance',
-                            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-                        }
-                    };
-
-                    var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
-                    chart.draw(data, google.charts.Bar.convertOptions(options));
-                }
-            </script>
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    }
+</script>
 
 
-
-            <?php include_once 'includes/footer.php'; ?>
+<?php include_once 'includes/footer.php'; ?>

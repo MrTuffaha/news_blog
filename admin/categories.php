@@ -77,7 +77,7 @@ if (isset($_REQUEST['editCategory'])) {
                                 <?php } ?>
                             </div>
                             <div class="col-sm-6">
-                                <table class="table table-bordered table-striped">
+                                <table id="myTable" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
