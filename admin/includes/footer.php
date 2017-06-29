@@ -1,8 +1,5 @@
 
 
-</div>
-</div>
-<!-- /.row -->
 
 </div>
 <!-- /.container-fluid -->
@@ -17,6 +14,8 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
+
+
 
 </body>
 

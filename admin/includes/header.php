@@ -2,12 +2,12 @@
 ob_start();
 include_once '../includes/default.php';
 session_start();
-if(isset($_SESSION['role'])){
-    if($_SESSION['role']!=='admin'){
-        header('location: '.DIR.'index.php');
+if (isset($_SESSION['role'])) {
+    if ($_SESSION['role'] !== 'admin') {
+        header('location: ' . DIR . 'index.php');
     }
-}else{
-    header('location: '.DIR.'index.php');
+} else {
+    header('location: ' . DIR . 'index.php');
 }
 ?>
 
@@ -39,6 +39,8 @@ if(isset($_SESSION['role'])){
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+
+
 
     </head>
 
