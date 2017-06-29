@@ -11,7 +11,7 @@ include_once '../includes/User.php';
 
     <?php
     if (!empty(($_SESSION['user_id']))) {
-        if (isset($_POST['update_user'])) {
+        if (isset($_POST['update_profile'])) {
             $updateUser = new User();
             $updateUser->setUsername($_POST['user_name']);
             $updateUser->setPassword($_POST['user_password']);
@@ -78,12 +78,12 @@ include_once '../includes/User.php';
         </div>
 
         <div class="form-group">
-            <input class="btn btn-primary" name="update_user" value="publish" id="" type="submit">
+            <input class="btn btn-primary" name="update_profile" value="publish" id="" type="submit">
         </div>
 
 
     </form>
 
 
-    
+
     <?php include_once 'includes/footer.php'; ?>

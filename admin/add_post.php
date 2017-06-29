@@ -46,6 +46,13 @@ if (isset($_REQUEST['add_post'])) {
         <input class="form-control" name="status" id="post_sttus" type="text">
     </div>
     <div class="form-group">
+        <label for="post_status">Status</label><br>
+        <select name="post_status" id="post_status">
+            <option value='draft'>draft</option>
+            <option value='published'>Published</option>
+        </select>
+    </div>
+    <div class="form-group">
         <label for="post_image">Image</label>
         <input class="form-control" name="image" id="post_image" type="file">
     </div>

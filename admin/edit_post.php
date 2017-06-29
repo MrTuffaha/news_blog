@@ -63,8 +63,11 @@ if (!empty(($_REQUEST['post_id']))) {
         <input value="<?php echo $post_author; ?>" class="form-control" name="author" id="post_author" type="text">
     </div>
     <div class="form-group">
-        <label for="post_status">Status</label>
-        <input value="<?php echo $post_status ?>" class="form-control" name="status" id="post_sttus" type="text">
+        <label for="post_status">Status</label><br>
+        <select name="post_status" id="post_status">
+            <option value='draft'>draft</option>
+            <option value='published'>Published</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="post_image">Images</label>
