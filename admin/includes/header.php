@@ -24,6 +24,7 @@ if (isset($_SESSION['role'])) {
 
         <title>SB Admin - Bootstrap Admin Template</title>
 
+
         <!-- Bootstrap Core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -40,7 +41,13 @@ if (isset($_SESSION['role'])) {
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        
+
+        <!--datatables-->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.bootstrap.min.css"/>
+
+
+
     </head>
 
     <body>
