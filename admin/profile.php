@@ -14,7 +14,6 @@ include_once '../includes/User.php';
         if (isset($_POST['update_profile'])) {
             $updateUser = new User();
             $updateUser->setUsername($_POST['user_name']);
-            $updateUser->setPassword($_POST['user_password']);
             $updateUser->setFirstname($_POST['user_firstname']);
             $updateUser->setLastname($_POST['user_lastname']);
             $updateUser->setEmail($_POST['user_email']);
@@ -23,13 +22,13 @@ include_once '../includes/User.php';
                 $updateUser->setImageName($_FILES['user_image']['name']);
                 $updateUser->setImageContent($_FILES['user_image']['tmp_name']);
             }
+            $updateUser->updateUser($_SESSION['user_id']);
             header("location: posts.php");
         } else {
             $user = new User();
             $currentUser = $user->fetchById($_SESSION['user_id']);
             $user_id = $currentUser['user_id'];
             $user_name = $currentUser['user_name'];
-            $user_password = $currentUser['user_password'];
             $user_firstname = $currentUser['user_firstname'];
             $user_lastname = $currentUser['user_lastname'];
             $user_email = $currentUser['user_email'];
@@ -43,15 +42,12 @@ include_once '../includes/User.php';
 
     <form method="POST" action="" enctype="multipart/form-data">
 
+        <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'];?>">
         <div class="form-group">
             <label for="user_name">Username</label>
             <input value="<?php echo $user_name;?>" class="form-control" name="user_name" id="user_name" type="text">
         </div>
 
-        <div class="form-group">
-            <label for="user_password">Password</label>
-            <input value="" class="form-control" name="user_password" id="user_password" type="text">
-        </div>
         <div class="form-group">
             <label for="user_email">Email:</label>
             <input value="<?php echo $user_email;?>" class="form-control" name="user_email" id="user_email" type="text">
@@ -78,7 +74,7 @@ include_once '../includes/User.php';
         </div>
 
         <div class="form-group">
-            <input class="btn btn-primary" name="update_profile" value="publish" id="" type="submit">
+            <input class="btn btn-primary" name="update_profile" value="update profile" id="" type="submit">
         </div>
 
 

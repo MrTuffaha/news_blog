@@ -13,39 +13,39 @@ class User extends Database {
     private $imageName;
     private $imageContent;
 
-    function setUsername($username) {
+    public function setUsername($username) {
         $this->username = $this->run_mysql_real_escape_string($username);
     }
 
-    function setPassword($password) {
+    public function setPassword($password) {
         $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
-    function setFirstname($firstname) {
+    public function setFirstname($firstname) {
         $this->firstname = $this->run_mysql_real_escape_string($firstname);
     }
 
-    function setLastname($lastname) {
+    public function setLastname($lastname) {
         $this->lastname = $this->run_mysql_real_escape_string($lastname);
     }
 
-    function setEmail($email) {
+    public function setEmail($email) {
         $this->email = $this->run_mysql_real_escape_string($email);
     }
 
-    function setRole($role) {
+    public function setRole($role) {
         $this->role = $this->run_mysql_real_escape_string($role);
     }
 
-    function setImageName($imageName) {
+    public function setImageName($imageName) {
         $imageName = strtolower($imageName);
         $tmp = explode('.', $imageName);
         $ext = end($tmp);
         $imageName = uniqid("img_") . "." . $ext;
-        $this->image_name = "images/" . $imageName;
+        $this->imageName = "images/" . $imageName;
     }
 
-    function setImageContent($imageContent) {
+    public function setImageContent($imageContent) {
         $this->imageContent = $imageContent;
     }
 
@@ -74,7 +74,7 @@ class User extends Database {
             die($this->getMysqliError());
         } else {
             if (!empty($this->imageName)) {
-                move_uploaded_file($this->imageContent, DIR . $this->imageContent);
+                move_uploaded_file($this->imageContent, FILE_DIR . $this->imageName);
             }
         }
     }
@@ -98,9 +98,18 @@ class User extends Database {
 
     public function updateUser($id) {
         $id = $this->run_mysql_real_escape_string($id);
-        $query = "DELETE FROM `user` WHERE `user_id` = '$id'";
+        $query = "UPDATE `user` SET `user_name`='$this->username',`user_firstname`='$this->firstname',`user_lastname`='$this->lastname',`user_email`='$this->email',`user_role`='$this->role' ";
+
+        if(!empty($this->imageName)){
+            $query .= ",`user_image`='$this->imageName'";
+        }
+        $query .= " WHERE `user_id` = '$id';";
         if (!$this->performQuery($query)) {
             die($this->getMysqliError());
+        }else{
+            if(!empty($this->imageName)){
+                move_uploaded_file($this->imageContent, FILE_DIR . $this->imageName);
+            }
         }
     }
 

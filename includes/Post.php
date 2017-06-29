@@ -2,7 +2,7 @@
 
 /**
  * @author: Omar Tuffaha <omar_tuffaha@hotmail.com>
- * @description: This is a class that will all movements on Posts 
+ * @description: This is a class that will all movements on Posts
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
  * @Class: Post
  */
@@ -69,7 +69,7 @@ class Post extends Database {
             return NULL;
         }
     }
-    
+
     public function fetchAllPublished() {
         $query = "SELECT `post_id`, `category`.`category_title`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`,`post_comment_count`, `post_views_count`, `post_status` FROM `posts` LEFT JOIN `category` ON `category_id` = `post_category_id` WHERE `post_status` = 'published' ORDER BY `post_date` DESC;";
         if ($this->performQuery($query)) {
@@ -78,7 +78,7 @@ class Post extends Database {
             return NULL;
         }
     }
-    
+
 
     public function fetchById($id) {
         $id = $this->run_mysql_real_escape_string($id);
@@ -93,7 +93,7 @@ class Post extends Database {
             return NULL;
         }
     }
-    
+
     public function fetchByCategory($id) {
         $id = $this->run_mysql_real_escape_string($id);
         $query = "SELECT `post_id`, `post_category_id`, `post_title`,"

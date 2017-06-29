@@ -5,7 +5,7 @@ if (!empty(($_REQUEST['post_id']))) {
         $updatePost->setTitle($_POST['title']);
         $updatePost->setCategory($_POST['category']);
         $updatePost->setAuthor($_POST['author']);
-        $updatePost->setStatus($_POST['status']);
+        $updatePost->setStatus($_POST['post_status']);
         if (!empty($_FILES['image']['name'])) {
             $updatePost->setImage_name($_FILES['image']['name']);
             $updatePost->setImage_content($_FILES['image']['tmp_name']);
