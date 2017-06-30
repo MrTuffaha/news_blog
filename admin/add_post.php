@@ -4,7 +4,7 @@ if (isset($_REQUEST['add_post'])) {
     $newPost->setTitle($_POST['title']);
     $newPost->setCategory($_POST['category']);
     $newPost->setAuthor($_POST['author']);
-    $newPost->setStatus($_POST['status']);
+    $newPost->setStatus($_POST['post_status']);
     if (!empty($_FILES['image']['name'])) {
         $newPost->setImage_name($_FILES['image']['name']);
         $newPost->setImage_content($_FILES['image']['tmp_name']);
