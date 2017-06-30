@@ -28,7 +28,8 @@ crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
 
-
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>tinymce.init({selector: 'textarea'});</script>
 
 <script>
 
@@ -54,9 +55,10 @@ crossorigin="anonymous"></script>
                     exportOptions: {
                         columns: ':visible'
                     }
-                },'colvis'
+                }, 'colvis'
 
             ]});
+
     });
 </script>
 </body>
