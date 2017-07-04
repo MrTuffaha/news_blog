@@ -113,7 +113,7 @@ class User extends Database {
         }
     }
 
-    public function auth($username, $password) {
+    public function auth($username, $password,$remeberMe) {
         $username = $this->run_mysql_real_escape_string($username);
         $password = $this->run_mysql_real_escape_string($password);
         $query = "SELECT `user_id`, `user_name`, `user_password`, `user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_role`, `user_randSalt` FROM `user` WHERE `user_name` = '$username'";
@@ -123,6 +123,11 @@ class User extends Database {
                 return FALSE;
             } else {
                 if (password_verify($password, $thisUser['user_password'])) {
+                    if($remeberMe){
+                        include_once "Autologin.php";
+                        $autologin = new Autologin();
+                        $autologin->saveToken($thisUser['user_id']);
+                    }
                     return $thisUser;
                 } else {
                     return FALSE;

@@ -1,7 +1,7 @@
 <?php
 
 include_once 'config.php';
-//include_once 'default.php';
+include_once 'default.php';
 
 /**
  * @ClassName : MySql Database Class

@@ -2,7 +2,9 @@
 
     <div class="well">
 
-        <?php if (!isset($_SESSION['login_status'])) {?>
+        <?php
+        if (!isset($_SESSION['login_status'])) {
+                ?>
             <h4>Login</h4>
             <form method="post" action="includes/login.php">
                 <div class="form-group">
@@ -15,6 +17,10 @@
                         <button name="login" class="btn btn-primary" type="submit">Login
                         </button>
                     </span>
+                </div>
+                <div class="form-group">
+                    <input name="remeberMe" id="remeberMe" type="checkbox" placeholder="remeberMe">
+                    <label for="remeberMe">Remember Me</label>
                 </div>
                 <?php
                 if (isset($_SESSION['login_failed'])) {

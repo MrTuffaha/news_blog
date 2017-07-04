@@ -3,6 +3,11 @@ include_once 'default.php';
 include_once 'includes/Post.php';
 include_once 'includes/Category.php';
 session_start();
+if (!isset($_SESSION['login_status'])) {
+    if(isset($_COOKIE['autologin'])){
+        header("location: ".DIR."includes/login.php");
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
