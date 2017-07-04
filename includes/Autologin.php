@@ -14,7 +14,7 @@ class Autologin extends Database {
         if(!$this->performQuery($query)){
             die($this->getMysqliError());
         }else{
-            setcookie("autologin", "$user_identifier-$user_token", time() + 60 * 60 * 24 * 365,COOKIE_DIR,'localhost');
+            setcookie("autologin", "$user_identifier-$user_token", time() + 60 * 60 * 24 * 365,COOKIE_DIR,DOMAIN);
         }
         $lastId = $this->lastInsertedId();
         //it returns the last created id if it was created else false is returned
@@ -45,7 +45,7 @@ class Autologin extends Database {
                 $hash_token = password_hash($user_token, PASSWORD_DEFAULT);
                 $query = "UPDATE `remebered_session` SET `token`='$hash_token' WHERE `id` = '$session_id'";
                 if ($this->performQuery($query)) {
-                    setcookie("autologin", "$user_identifier-$user_token", time() + 60 * 60 * 24 * 365,COOKIE_DIR,'localhost');
+                    setcookie("autologin", "$user_identifier-$user_token", time() + 60 * 60 * 24 * 365,COOKIE_DIR,DOMAIN);
                 }
                 return $user_identifier;
             } else {
@@ -53,11 +53,11 @@ class Autologin extends Database {
                 $this->performQuery($query);
                 $query = "UPDATE `user` SET `user_session_hijacked`= '1' WHERE `user_id` = '$user_identifier';";
                 $this->performQuery($query);
-                setcookie("autologin", "", time() - 60 * 60 * 24 * 365,COOKIE_DIR,'localhost');
+                setcookie("autologin", "", time() - 60 * 60 * 24 * 365,COOKIE_DIR,DOMAIN);
                 return FALSE;
             }
         }else{
-            setcookie("autologin", "", time() - 60 * 60 * 24 * 365,COOKIE_DIR,'localhost');
+            setcookie("autologin", "", time() - 60 * 60 * 24 * 365,COOKIE_DIR,DOMAIN);
         }
         return FALSE;
     }
@@ -84,7 +84,7 @@ class Autologin extends Database {
             $query = "DELETE FROM `remebered_session` WHERE `id` = '$session_id'";
             $database->performQuery($query);
         }
-        setcookie("autologin", "", time() - 60 * 60 * 24 * 365,COOKIE_DIR,'localhost');
+        setcookie("autologin", "", time() - 60 * 60 * 24 * 365,COOKIE_DIR,DOMAIN);
     }
 
 }
