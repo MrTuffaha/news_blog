@@ -51,6 +51,8 @@ class Autologin extends Database {
             } else {
                 $query = "DELETE FROM `remebered_session` WHERE `user_id` = '$user_identifier'";
                 $this->performQuery($query);
+                $query = "UPDATE `user` SET `user_session_hijacked`= '1' WHERE `user_id` = '$user_identifier';";
+                $this->performQuery($query);
                 setcookie("autologin", "", time() - 60 * 60 * 24 * 365,COOKIE_DIR,'localhost');
                 return FALSE;
             }

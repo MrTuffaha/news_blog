@@ -24,7 +24,6 @@ if (isset($_REQUEST['delete_user'])) {
 <table id="myTable" class="table table-striped table-bordered">
     <thead>
         <tr>
-            <td>ID</td>
             <td>Username</td>
             <td>First Name</td>
             <td>Last Name</td>
@@ -55,7 +54,6 @@ if (!empty($userList)) {
 
 
         echo "<tr>";
-        echo "<td>{$user_id}</td>";
         echo "<td>{$user_name}</td>";
         echo "<td>{$user_firstname}</td>";
         echo "<td>{$user_lastname}</td>";

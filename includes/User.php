@@ -67,9 +67,23 @@ class User extends Database {
         }
     }
 
+    private function checkId($id){
+        $query = "SELECT `user_id` FROM `user` WHERE `user_id` = '$id';";
+        var_dump($query);
+        if (!$this->performQuery($query)) {
+            die($this->getMysqliError());
+        }
+        $result = parent::fetchAll()[0];
+        return $result? FALSE:TRUE;
+    }
+
     public function createUser() {
-        $query = "INSERT INTO `user`( `user_name`, `user_password`, `user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_role`, `user_randSalt`) "
-                . "VALUES ('$this->username','$this->password','$this->firstname','$this->lastname','$this->email','$this->imageName','$this->role','');";
+        $user_id = uniqid(rand(), TRUE);
+        while (!$this->checkId($user_id)) {
+            $user_id = uniqid(rand(), TRUE);
+        }
+        $query = "INSERT INTO `user`( `user_id`,`user_name`, `user_password`, `user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_role`, `user_randSalt`) "
+                . "VALUES ('$user_id','$this->username','$this->password','$this->firstname','$this->lastname','$this->email','$this->imageName','$this->role','');";
         if (!$this->performQuery($query)) {
             die($this->getMysqliError());
         } else {
